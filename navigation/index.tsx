@@ -1,8 +1,3 @@
-/**
- * If you are not familiar with React Navigation, refer to the "Fundamentals" guide:
- * https://reactnavigation.org/docs/getting-started
- *
- */
 import { FontAwesome } from "@expo/vector-icons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import {
@@ -13,12 +8,10 @@ import {
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import React from "react";
 import { ColorSchemeName } from "react-native";
-import C, { apply } from "consistencss";
+import C, { apply, theme } from "consistencss";
 
-import Colors from "../constants/Colors";
-import useColorScheme from "../hooks/useColorScheme";
 import NotFoundScreen from "../screens/NotFoundScreen";
-import ContactsScreen from "../screens/ContactsScreen";
+import AccountScreen from "../screens/AccountScreen";
 import EventsScreen from "../screens/EventsScreen";
 import GiftsScreen from "../screens/GiftsScreen";
 import SettingsScreen from "../screens/SettingsScreen";
@@ -40,10 +33,6 @@ export default function Navigation({
   );
 }
 
-/**
- * A root stack navigator is often used for displaying modals on top of all other content.
- * https://reactnavigation.org/docs/modal
- */
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
 function RootNavigator() {
@@ -63,21 +52,18 @@ function RootNavigator() {
   );
 }
 
-/**
- * A bottom tab navigator displays tab buttons on the bottom of the display to switch screens.
- * https://reactnavigation.org/docs/bottom-tab-navigator
- */
 const BottomTab = createBottomTabNavigator<RootTabParamList>();
 
 function BottomTabNavigator() {
-  const colorScheme = useColorScheme();
-
   return (
     <BottomTab.Navigator
       initialRouteName="Events"
       screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme].tint,
-        headerTitleStyle: C.bold,
+        tabBarActiveTintColor: theme.colors.brand,
+        headerTitleStyle: apply(C.familyRobotoBold, C.font6, C.textWhite),
+        headerStyle: C.bgBrand,
+        headerShadowVisible: false,
+        tabBarInactiveTintColor: "#999999",
       }}
     >
       <BottomTab.Screen
@@ -95,18 +81,18 @@ function BottomTabNavigator() {
         name="Gifts"
         component={GiftsScreen}
         options={{
-          title: "Gifts Suggestion",
+          title: "Shop",
           tabBarIcon: ({ color }) => <TabBarIcon name="gift" color={color} />,
           tabBarShowLabel: false,
         }}
       />
       <BottomTab.Screen
-        name="Contacts"
-        component={ContactsScreen}
+        name="Account"
+        component={AccountScreen}
         options={{
-          title: "Contacts",
+          title: "Account",
           tabBarShowLabel: false,
-          tabBarIcon: ({ color }) => <TabBarIcon name="users" color={color} />,
+          tabBarIcon: ({ color }) => <TabBarIcon name="user-o" color={color} />,
         }}
       />
       <BottomTab.Screen
@@ -129,5 +115,5 @@ function TabBarIcon(props: {
   name: React.ComponentProps<typeof FontAwesome>["name"];
   color: string;
 }) {
-  return <FontAwesome size={30} style={{ marginBottom: -3 }} {...props} />;
+  return <FontAwesome size={24} style={{ marginBottom: -3 }} {...props} />;
 }

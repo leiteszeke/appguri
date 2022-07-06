@@ -1,6 +1,5 @@
-import { FlatList, StyleSheet, TouchableOpacity } from "react-native";
+import { FlatList, Text, View, TouchableOpacity } from "react-native";
 
-import { Text, View } from "../components/Themed";
 import { RootTabScreenProps } from "../types";
 import * as Contacts from "expo-contacts";
 import { useFocusEffect } from "@react-navigation/native";

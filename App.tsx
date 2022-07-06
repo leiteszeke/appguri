@@ -6,13 +6,31 @@ import useCachedResources from "./hooks/useCachedResources";
 import useColorScheme from "./hooks/useColorScheme";
 import Navigation from "./navigation";
 import React from "react";
+import { ActionSheetProvider } from "@expo/react-native-action-sheet";
 
 extend({
   classes: {
-    layout: apply(C.flex, C.p2),
+    layout: apply(C.flex, { backgroundColor: "#8073B6" }),
     title: apply(C.font6, C.uppercase),
-    regular: { fontFamily: "Inter_400Regular" },
-    bold: { fontFamily: "Inter_700Bold" },
+  },
+  fonts: {
+    interRegular: "Inter_400Regular",
+    interMedium: "Inter_500Medium",
+    interBold: "Inter_700Bold",
+    robotoRegular: "Roboto_400Regular",
+    robotoBold: "Roboto_700Bold",
+  },
+  colors: {
+    brand: "#8073B6",
+    red: "#E20707",
+    gray: "#A3A3A3",
+    transparent: "transparent",
+  },
+  sizing: {
+    minimum: 1,
+    double: 2,
+    basic: 14,
+    basic2: 18,
   },
 });
 
@@ -25,8 +43,12 @@ export default function App() {
   } else {
     return (
       <SafeAreaProvider>
-        <Navigation colorScheme={colorScheme} />
-        <StatusBar />
+        <ActionSheetProvider>
+          <>
+            <Navigation colorScheme={colorScheme} />
+            <StatusBar />
+          </>
+        </ActionSheetProvider>
       </SafeAreaProvider>
     );
   }

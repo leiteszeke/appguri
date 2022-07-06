@@ -1,4 +1,9 @@
-import { Inter_400Regular, Inter_700Bold } from "@expo-google-fonts/inter";
+import {
+  Inter_400Regular,
+  Inter_500Medium,
+  Inter_700Bold,
+} from "@expo-google-fonts/inter";
+import { Roboto_400Regular, Roboto_700Bold } from "@expo-google-fonts/roboto";
 import { FontAwesome } from "@expo/vector-icons";
 import * as Font from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
@@ -17,7 +22,10 @@ export default function useCachedResources() {
         await Font.loadAsync({
           ...FontAwesome.font,
           Inter_400Regular,
+          Inter_500Medium,
           Inter_700Bold,
+          Roboto_400Regular,
+          Roboto_700Bold,
         });
       } catch (e) {
         // We might want to provide this error information to an error reporting service

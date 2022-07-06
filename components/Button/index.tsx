@@ -20,14 +20,7 @@ const Button = ({ disabled, label, onPress }: ButtonProps) => {
 
   return (
     <TouchableOpacity
-      style={apply(
-        C.bgPurple,
-        C.h10,
-        C.selfCenter,
-        C.row,
-        C.itemsCenter,
-        C.px3
-      )}
+      style={apply(C.bgBrand, C.h10, C.selfCenter, C.row, C.itemsCenter, C.px3)}
       onPress={handlePress}
     >
       <Text style={apply(C.uppercase, C.font4, C.textWhite)}>{label}</Text>
